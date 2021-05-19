@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public EnemySpawner Spawner;
+    
     
     void Start()
     {
