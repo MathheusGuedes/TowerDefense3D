@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    public float life = 2;
     public float speed = 10f;
 
     private Transform target;
     private int wavepointIndex = 0;
 
     public float distance;
+
+    public GameObject effectDeath;
 
     void Start()
     {
@@ -17,6 +20,13 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
+        if(life <= 0)
+        {
+            GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
+            Destroy(effectIns, 2f);
+            Destroy(gameObject);
+        }
+
         distance = Vector3.Distance(transform.position, target.position);
 
         Vector3 dir = target.position - transform.position;
@@ -38,7 +48,6 @@ public class EnemyMove : MonoBehaviour
             wavepointIndex ++;
             target = Waypoints.points[wavepointIndex];
         }
-        
     }
 
 }
