@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498906944294095408}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: 0.062499523, y: 2.0499997, z: 0}
   m_LocalScale: {x: 5, y: 4, z: 5}
   m_Children:
   - {fileID: 9059439326558041769}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8919032317669833776}
   - component: {fileID: 8042443054884470322}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: StandardTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb7ed4f253093546959d6b0583f204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 30
   fireRate: 1
   enemyTag: Enemy
   partToRotate: {fileID: 685253651133617347}
@@ -109,8 +109,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3008949064643876100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009, y: 1.357, z: 1.692}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.009000111, y: 0.8445002, z: 1.2795005}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 685253651133617347}
@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3370644943071962568}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.008000041, y: 1.3629999, z: 0.9010002}
+  m_LocalPosition: {x: 0.008000089, y: 0.8505, z: 0.4885005}
   m_LocalScale: {x: 0.6172999, y: 0.16390242, z: 0.48108667}
   m_Children: []
   m_Father: {fileID: 685253651133617347}
@@ -240,7 +240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4007411328408838940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.002000046, y: 1.8895249, z: 0.42000023}
+  m_LocalPosition: {x: 0.002000093, y: 1.377025, z: 0.007500268}
   m_LocalScale: {x: 1.5000002, y: 0.44999, z: 1.5000002}
   m_Children: []
   m_Father: {fileID: 685253651133617347}
@@ -464,8 +464,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7317997131471650965}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.008000041, y: 1.3629999, z: 1.1510003}
-  m_LocalScale: {x: 0.50000006, y: 0.4999998, z: 0.33855504}
+  m_LocalPosition: {x: 0.008000041, y: 0.8505, z: 0.73850054}
+  m_LocalScale: {x: 0.50000006, y: 0.49999976, z: 0.33855504}
   m_Children: []
   m_Father: {fileID: 685253651133617347}
   m_RootOrder: 0
@@ -547,7 +547,6 @@ GameObject:
   - component: {fileID: 7630902365473244535}
   - component: {fileID: 1807020750077649914}
   - component: {fileID: 888761886679186426}
-  - component: {fileID: 2765493471192062509}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -563,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8880433173523329852}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.002000046, y: 0.96874994, z: 0.40099993}
+  m_LocalPosition: {x: 0.002000095, y: 0.45625, z: -0.011500026}
   m_LocalScale: {x: 1, y: 0.7187697, z: 1}
   m_Children: []
   m_Father: {fileID: 685253651133617347}
@@ -649,22 +648,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &2765493471192062509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8880433173523329852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eb7ed4f253093546959d6b0583f204e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 15
-  fireRate: 1
-  enemyTag: Enemy
-  partToRotate: {fileID: 0}
-  turnSpeed: 10
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}

@@ -11,19 +11,35 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
 
     public Text waveCountdownText;
+    public Text waveNumber;
 
     private int waveIndex = 0;
 
+    public Color finalColor = Color.red;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
+        if(countdown <= 3.5f)
+        {
+            waveCountdownText.color = finalColor;
+        }
+        else{
+            waveCountdownText.color = Color.white;
+        }
+
         if(countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
+            waveNumber.text = "Wave: " + waveIndex.ToString();
             countdown = timeBetweenWaves;
         }
+        
         countdown -= Time.deltaTime;
-
         waveCountdownText.text = Mathf.Round(countdown).ToString();
     }
 
@@ -36,7 +52,7 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.7f);
         }
     }
 

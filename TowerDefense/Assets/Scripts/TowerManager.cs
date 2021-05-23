@@ -16,9 +16,6 @@ public class TowerManager : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     
-
-    
-
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 1f);
