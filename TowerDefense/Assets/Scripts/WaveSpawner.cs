@@ -12,15 +12,12 @@ public class WaveSpawner : MonoBehaviour
 
     public Text waveCountdownText;
     public Text waveNumber;
+    public Text enemyCountdownText;
 
     private int waveIndex = 0;
+    private int enemyCountdown;
 
     public Color finalColor = Color.red;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -35,12 +32,13 @@ public class WaveSpawner : MonoBehaviour
         if(countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            waveNumber.text = "Wave: " + waveIndex.ToString();
+            waveNumber.text = "Wave " + waveIndex.ToString();
             countdown = timeBetweenWaves;
         }
         
         countdown -= Time.deltaTime;
         waveCountdownText.text = Mathf.Round(countdown).ToString();
+        enemyCountdownText.text = "Enemies "+ enemyCountdown + "/" + waveIndex;
     }
 
     IEnumerator SpawnWave()
@@ -48,7 +46,7 @@ public class WaveSpawner : MonoBehaviour
         print("Wave Incomming!");
 
         waveIndex++;
-
+        enemyCountdown = waveIndex;
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
@@ -58,6 +56,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        enemyCountdown --;
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
