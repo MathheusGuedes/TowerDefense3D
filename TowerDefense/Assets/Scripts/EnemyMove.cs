@@ -1,9 +1,9 @@
-
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
     public float life = 2;
+    public float speedBase = 10f;
     public float speed = 10f;
 
     private Transform target;
@@ -25,6 +25,13 @@ public class EnemyMove : MonoBehaviour
             GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
             Destroy(effectIns, 2f);
             Destroy(gameObject);
+        }
+        if(DayandNight.itsNigth)
+        {
+            speed = speedBase * 2f;
+        }
+        else{
+            speed = speedBase;
         }
 
         distance = Vector3.Distance(transform.position, target.position);
