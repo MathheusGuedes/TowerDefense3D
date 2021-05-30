@@ -12,14 +12,20 @@ public class Node : MonoBehaviour
 
     private GameObject tower;
 
+    BuildManager buildManager;
+
     void Start()
     {
         rend = GetComponent<Renderer>();
         startColor = GetComponent<Renderer>().material.color;
+        buildManager = BuildManager.instance;
     }
 
     void OnMouseDown()
     {
+        if(buildManager.GetTowerToBuild() == null)
+            return;
+
         if(tower != null)
         {
             print("Can't build there!");
@@ -28,6 +34,7 @@ public class Node : MonoBehaviour
     
     GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
     tower = Instantiate(towerToBuild, transform.position + positionOffSet, transform.rotation);
+    buildManager.SetTowerToBuild(null);
 
     }
 

@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     private Transform target;
     private EnemyMove enemyStatus;
     public float speed = 70;
+    public float attack;
     public GameObject impactEffect;
     public void Seek(Transform _target)
     {
@@ -40,7 +41,7 @@ public class Bullet : MonoBehaviour
     {
         GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 2f);
-        enemyStatus.life --;
+        enemyStatus.life -= attack;
         Destroy(gameObject);
 
     }

@@ -9,18 +9,17 @@ public class BuildManager : MonoBehaviour
     {
         if(instance != null)
         {
-            Debug.LogError("MOre than one BuildManager in scene!");
+            Debug.LogError("More than one BuildManager in scene!");
         }
         instance = this;
     }
-    public GameObject standardTowerPrefab;
-    private GameObject towerToBuild;
 
-    void Start()
-    {
-        towerToBuild = standardTowerPrefab;
-    }
+    private GameObject towerToBuild;
     
+    public void SetTowerToBuild(GameObject tower)
+    {
+        towerToBuild = tower;
+    }
     public GameObject GetTowerToBuild()
     {
         return towerToBuild;

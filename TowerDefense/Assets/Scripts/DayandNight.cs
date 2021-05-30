@@ -6,14 +6,14 @@ public class DayandNight : MonoBehaviour
 {       
     [Header("Minutes/Hours/Days")]
     public float timeSpeed;
-    public float minute;
-    public float hour;
-    public float day;
-    public float hourAndMinute;
+    private float minute;
+    private float hour;
+    private float day;
+    private float hourAndMinute;
     public static bool itsNigth;
 
     [Header("Components")]    
-    public Text txtHour;
+    public Text hourText;
     public Light sun;
     public Light moon;
 
@@ -56,7 +56,7 @@ public class DayandNight : MonoBehaviour
         else itsNigth = false;
 
         string dayAndHour = string.Format("Day {0:0}    {01:00}hrs", day, hour);
-        txtHour.text = dayAndHour.ToString();
+        hourText.text = dayAndHour.ToString();
     }
 
 }

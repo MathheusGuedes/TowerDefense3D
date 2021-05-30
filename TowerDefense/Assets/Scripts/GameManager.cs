@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public float timeSpeed = 1;
     public Text txtTimeSpeed;
-
     
     void Start()
     {

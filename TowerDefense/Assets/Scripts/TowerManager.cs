@@ -1,20 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {   
     private Transform target;
 
     [Header("Attributes")]
+    public string nameTower = "Tower";
+    public Sprite imgTower;
+    public float price = 100f;
+    public float attack = 1f;
+    public float fireRate = 1f;  
     public float range = 15f;
-    public float fireRate = 1;    
+    public string description;
+    
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-    public Transform partToRotate;
-    public float turnSpeed = 10;
     public GameObject bulletPrefab;
-    public Transform firePoint;
+    public float turnSpeed = 10;
+    public Transform partToRotate;
+    public List<Transform> firePoint;
     
     void Start()
     {
@@ -57,27 +66,32 @@ public class TowerManager : MonoBehaviour
         }
         fireCountdown -= Time.deltaTime;
         TargetLockOn();
-
-        
     }
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
-        if(bullet != null)
+        if(target == null)
+            return; 
+
+        foreach (Transform firePoint in firePoint)
         {
-            bullet.Seek(target);
+            GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Bullet bullet = bulletGO.GetComponent<Bullet>();
+            bullet.attack = attack;  
+            if(bullet != null)
+            {
+                bullet.Seek(target);
+            }          
         }
+        
         
     }
 
     void TargetLockOn()
     {
         if(target == null)
-        {
             return;
-        }
+
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
