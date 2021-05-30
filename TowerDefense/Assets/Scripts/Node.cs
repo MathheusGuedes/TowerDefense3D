@@ -10,7 +10,7 @@ public class Node : MonoBehaviour
 
     public Vector3 positionOffSet;
 
-    private GameObject tower;
+    public GameObject tower;
 
     BuildManager buildManager;
 
@@ -23,19 +23,22 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(buildManager.GetTowerToBuild() == null)
-            return;
-
-        if(tower != null)
+        if(tower == null)
         {
-            print("Can't build there!");
-            return;
+            if(buildManager.GetTowerToBuild() != null)
+            {
+                GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
+                tower = Instantiate(towerToBuild, transform.position + positionOffSet, transform.rotation);
+                buildManager.SetTowerToBuild(null);
+                buildManager.SetSelectTowerToBuild(null);
+            }
+            buildManager.SetTowerToUpgrade(null);
+        }
+        else
+        {   
+            buildManager.SetTowerToUpgrade(tower);
         }
     
-    GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
-    tower = Instantiate(towerToBuild, transform.position + positionOffSet, transform.rotation);
-    buildManager.SetTowerToBuild(null);
-
     }
 
     void OnMouseEnter()

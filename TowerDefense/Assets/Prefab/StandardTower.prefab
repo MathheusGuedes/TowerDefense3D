@@ -79,13 +79,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb7ed4f253093546959d6b0583f204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameTower: Tower1
+  rarityTower: 0
+  nameTower: Basic Tower
   imgTower: {fileID: 21300000, guid: 0be7166277a505042b9d2f438e886a70, type: 3}
-  price: 100
-  attack: 1
-  fireRate: 1
-  range: 30
   description: Basic tower, nothig special.
+  price: 100
+  stats:
+  - level: 1
+    attack: 1
+    fireRate: 1
+    range: 25
+    priceUpgrade: 150
+    priceSell: 75
+  - level: 2
+    attack: 1.5
+    fireRate: 1.2
+    range: 30
+    priceUpgrade: 200
+    priceSell: 150
+  - level: 3
+    attack: 2
+    fireRate: 1.5
+    range: 35
+    priceUpgrade: 200
+    priceSell: 150
+  attack: 1
+  range: 30
+  fireRate: 1
+  level: 1
+  priceSell: 80
+  priceUpgrade: 150
   enemyTag: Enemy
   bulletPrefab: {fileID: 1945552129584917094, guid: d14dd8bee37524046b543b9769d9f0aa, type: 3}
   turnSpeed: 10

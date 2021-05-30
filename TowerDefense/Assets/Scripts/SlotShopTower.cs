@@ -22,23 +22,18 @@ public class SlotShopTower : MonoBehaviour
         buildManager = BuildManager.instance;
         statsTower = tower.GetComponent<TowerManager>();
         txtName.text = statsTower.nameTower.ToString();
-        txtAttack.text = "Atk: " + (statsTower.attack * statsTower.firePoint.Count);
-        txtRange.text = "Rng: " + statsTower.range.ToString();
-        txtSpeed.text = "Spd: " + statsTower.fireRate.ToString();
+        txtAttack.text = "Atk: " + (statsTower.stats[statsTower.currentLevel].attack * statsTower.firePoint.Count);
+        txtRange.text = "Rng: " + statsTower.stats[statsTower.currentLevel].range.ToString();
+        txtSpeed.text = "Spd: " + statsTower.stats[statsTower.currentLevel].fireRate.ToString();
         txtValue.text = statsTower.price.ToString() + "$";
         txtDescription.text = statsTower.description.ToString();
         imgTower.sprite = statsTower.imgTower;
         btnBuy.onClick.AddListener(() => BuyTheTower(tower));
-
-    }
-
-    void Update()
-    {
-        
     }
 
     public void BuyTheTower(GameObject tower)
     {
+        buildManager.SetSelectTowerToBuild(this.gameObject);
         buildManager.SetTowerToBuild(tower);
     }
 

@@ -181,13 +181,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb7ed4f253093546959d6b0583f204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameTower: Tower2
+  rarityTower: 0
+  nameTower: Double Cannon
   imgTower: {fileID: 21300000, guid: d8075b3b39cf8ad46bc53a9f82803d88, type: 3}
-  price: 150
-  attack: 0.5
-  fireRate: 2.5
-  range: 30
-  description: 
+  description: Tower with double cannon, less damage but more fire rate
+  price: 175
+  stats:
+  - level: 1
+    attack: 0.2
+    fireRate: 2.5
+    range: 25
+    priceUpgrade: 250
+    priceSell: 125
+  - level: 2
+    attack: 0.3
+    fireRate: 2.8
+    range: 25
+    priceUpgrade: 500
+    priceSell: 300
+  - level: 3
+    attack: 0.5
+    fireRate: 3
+    range: 30
+    priceUpgrade: 500
+    priceSell: 300
+  currentLevel: 0
+  nextLevel: 1
   enemyTag: Enemy
   bulletPrefab: {fileID: 1945552129584917094, guid: d14dd8bee37524046b543b9769d9f0aa, type: 3}
   turnSpeed: 10
