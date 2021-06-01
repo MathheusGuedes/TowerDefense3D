@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {   
@@ -23,6 +24,9 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
+        if(EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if(tower == null)
         {
             if(buildManager.GetTowerToBuild() != null)
@@ -38,16 +42,19 @@ public class Node : MonoBehaviour
         {   
             buildManager.SetTowerToUpgrade(tower);
         }
-    
     }
+
 
     void OnMouseEnter()
     {   
+        if(EventSystem.current.IsPointerOverGameObject())
+            return;
         rend.material.color = houverColor;
     }
 
     void OnMouseExit()
     {
+        
         rend.material.color = startColor;
     }
     

@@ -99,7 +99,7 @@ public class TowerManager : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, stats[currentLevel].range);
@@ -126,7 +126,7 @@ public class TowerManager : MonoBehaviour
 
     public void LevelUp()
     {
-        if(currentLevel < stats.Length-1)
+        if(currentLevel < stats.Length)
             currentLevel ++;
         if(nextLevel < stats.Length-1)
             nextLevel ++;

@@ -55,7 +55,6 @@ public class BuildManager : MonoBehaviour
             if(towerSelectedToBuild != null)
                 towerSelectedToBuild.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
-                
             _tower.GetComponent<Image>().color = new Color32(150, 180, 230, 255);
         }
         towerSelectedToBuild = _tower;

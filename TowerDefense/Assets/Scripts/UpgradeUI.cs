@@ -59,7 +59,7 @@ public class UpgradeUI : MonoBehaviour
             txtNextRange.text = "Range: " + towerToUpgrade.stats[towerToUpgrade.nextLevel].range.ToString();
             txtNextSpeed.text = "Speed: " + towerToUpgrade.stats[towerToUpgrade.nextLevel].fireRate.ToString();
 
-            if(towerToUpgrade.stats[towerToUpgrade.nextLevel].level >= 3)
+            if(towerToUpgrade.stats[towerToUpgrade.currentLevel].level >= 3)
             {
                 btnUpgrade.enabled = false;
             }
