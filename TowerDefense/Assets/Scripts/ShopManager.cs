@@ -29,8 +29,7 @@ public class ShopManager : MonoBehaviour
 
     public void OpenShop()
     {
-        if(shopIsOpen) shopIsOpen = false;
-        else shopIsOpen = true;
+        shopIsOpen = !shopIsOpen;
     }
     
 }

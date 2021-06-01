@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8919032317669833776}
   - component: {fileID: 8042443054884470322}
   m_Layer: 0
-  m_Name: StandardTower
+  m_Name: BasicTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,10 +194,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarityTower: 0
+  rarityColor:
+    serializedVersion: 2
+    rgba: 4278190080
   nameTower: Basic Tower
   imgTower: {fileID: 21300000, guid: 6187fadb7f4263f49a18fd4745ab7d39, type: 3}
   description: Basic tower, nothig special.
+  bulletColor:
+    serializedVersion: 2
+    rgba: 4279177177
   price: 100
+  currentLevel: 0
   stats:
   - level: 1
     attack: 1
@@ -217,7 +224,6 @@ MonoBehaviour:
     range: 35
     priceUpgrade: 200
     priceSell: 225
-  currentLevel: 0
   nextLevel: 1
   enemyTag: Enemy
   bulletPrefab: {fileID: 1945552129584917094, guid: d14dd8bee37524046b543b9769d9f0aa, type: 3}

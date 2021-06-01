@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ca41afad612a04b4d98c90bce6483f17, type: 2}
+  - {fileID: 2100000, guid: ac639aea9db681e4a8a5e7e3ff3717b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +112,6 @@ MonoBehaviour:
   speed: 70
   attack: 0
   impactEffect: {fileID: 3994897563950047251, guid: 27d836333cdc7d84aae987eaf86f15fa, type: 3}
+  bulletColor:
+    serializedVersion: 2
+    rgba: 255

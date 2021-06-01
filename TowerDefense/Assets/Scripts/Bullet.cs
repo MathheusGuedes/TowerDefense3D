@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,6 +7,12 @@ public class Bullet : MonoBehaviour
     public float speed = 70;
     public float attack;
     public GameObject impactEffect;
+    public Color32 bulletColor;
+
+    void Start()
+    {
+        this.GetComponent<Renderer>().material.SetColor("_Color", bulletColor);
+    }
     public void Seek(Transform _target)
     {
         target = _target;
@@ -40,10 +45,10 @@ public class Bullet : MonoBehaviour
     void HitTarget()
     {
         GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
+        effectIns.GetComponent<Renderer>().material.SetColor("_Color", bulletColor);
         Destroy(effectIns, 2f);
         enemyStatus.life -= attack;
         Destroy(gameObject);
-
     }
 
     

@@ -16,13 +16,17 @@ public class BuildManager : MonoBehaviour
 
     private GameObject towerToBuild;
     private GameObject towerToUpgrade;
-    public GameObject towerSelectedToBuild;
+    private GameObject slotShop;
+    private GameObject player;
 
-    public void SetTowerToBuild(GameObject tower)
+    public bool CanBuild { get {return towerToBuild != null;}}
+
+    public void SetTowerToBuild(GameObject _slotShop)
     {
-        towerToUpgrade = null;
-        towerToBuild = tower;
+        ChangeColorTowerSelect(_slotShop);
+        slotShop = _slotShop;
     }
+
     public GameObject GetTowerToBuild()
     {
         return towerToBuild;
@@ -39,24 +43,29 @@ public class BuildManager : MonoBehaviour
         return towerToUpgrade;
     }
 
-    public GameObject GetSelectTowerToBuild()
-    {
-        return towerSelectedToBuild;
-    }
 
-    public void SetSelectTowerToBuild(GameObject _tower)
+
+    void ChangeColorTowerSelect(GameObject _slotShop)
     {
-        if(_tower == null)
+        towerToUpgrade = null;
+        
+        if(_slotShop == null)
         {
-            if(towerSelectedToBuild != null)
-                towerSelectedToBuild.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            if(slotShop != null)
+                slotShop.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            return;
         }
-        else{
-            if(towerSelectedToBuild != null)
-                towerSelectedToBuild.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        else {
+            towerToBuild = _slotShop.GetComponent<SlotShopTower>().tower;
 
-            _tower.GetComponent<Image>().color = new Color32(150, 180, 230, 255);
+            if(slotShop != null)
+            {
+                slotShop.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                _slotShop.GetComponent<Image>().color = new Color32(150, 180, 230, 255);
+            }
+            else{
+                _slotShop.GetComponent<Image>().color = new Color32(150, 180, 230, 255);
+            }
         }
-        towerSelectedToBuild = _tower;
     }
 }

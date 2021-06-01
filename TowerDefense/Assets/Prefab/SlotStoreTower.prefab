@@ -115,12 +115,14 @@ MonoBehaviour:
   tower: {fileID: 2554754795264944496, guid: 21d0f6b6065e8644c9a899ea6105a92f, type: 3}
   statsTower: {fileID: 0}
   imgTower: {fileID: 2015852625000441037}
+  imgRarity: {fileID: 2015852624750262260}
   txtName: {fileID: 2015852625885957475}
   txtAttack: {fileID: 2015852625086572012}
   txtRange: {fileID: 2015852624840786222}
   txtSpeed: {fileID: 2015852625753205762}
   txtValue: {fileID: 2015852625938938338}
   txtDescription: {fileID: 2015852625651912523}
+  btnBuy: {fileID: 0}
 --- !u!1 &2015852624750262259
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,12 +29,11 @@ public class Node : MonoBehaviour
 
         if(tower == null)
         {
-            if(buildManager.GetTowerToBuild() != null)
+            if(buildManager.CanBuild)
             {
                 GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
                 tower = Instantiate(towerToBuild, transform.position + positionOffSet, transform.rotation);
                 buildManager.SetTowerToBuild(null);
-                buildManager.SetSelectTowerToBuild(null);
             }
             buildManager.SetTowerToUpgrade(null);
         }
@@ -46,10 +45,18 @@ public class Node : MonoBehaviour
 
 
     void OnMouseEnter()
-    {   
+    {  
         if(EventSystem.current.IsPointerOverGameObject())
             return;
+
+        if(tower != null)
+            rend.material.color = houverColor;
+
+        if(buildManager.GetTowerToBuild() == null)
+            return;
+
         rend.material.color = houverColor;
+        
     }
 
     void OnMouseExit()

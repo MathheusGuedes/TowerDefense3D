@@ -25,25 +25,28 @@ public class UpgradeUI : MonoBehaviour
     public Text txtNextAttack;
     public Text txtNextRange;
     public Text txtNextSpeed;
+    public GameObject pnlNextStats;
+    public GameObject pnlMaxStats;
 
     [Header("Button")]
     public Text txtSell;
     public Text txtUpgrade;
     public Button btnSell;
-    public Button btnUpgrade;
+    public GameObject btnUpgrade;
 
     void Start()
     {
         buildManager = BuildManager.instance;
-        btnUpgrade.onClick.AddListener(() => towerToUpgrade.LevelUp());
+        btnUpgrade.GetComponent<Button>().onClick.AddListener(() => towerToUpgrade.LevelUp());
     }
 
 
     void Update()
     {
         if(buildManager.GetTowerToUpgrade() != null)
-        {
+        {   
             towerToUpgrade = buildManager.GetTowerToUpgrade().GetComponent<TowerManager>();
+            rarityTower.color = towerToUpgrade.rarityColor;
             imgTower.sprite = towerToUpgrade.imgTower;
             txtName.text = towerToUpgrade.nameTower;
             description.text = towerToUpgrade.description;
@@ -61,11 +64,15 @@ public class UpgradeUI : MonoBehaviour
 
             if(towerToUpgrade.stats[towerToUpgrade.currentLevel].level >= 3)
             {
-                btnUpgrade.enabled = false;
+                btnUpgrade.SetActive(false);
+                pnlNextStats.SetActive(false);
+                pnlMaxStats.SetActive(true);
             }
             else
             {
-                btnUpgrade.enabled = true;
+                btnUpgrade.SetActive(true);
+                pnlNextStats.SetActive(true);
+                pnlMaxStats.SetActive(false);
             }
         }
 

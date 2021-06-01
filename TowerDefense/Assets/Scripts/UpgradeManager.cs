@@ -24,7 +24,6 @@ public class UpgradeManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {   
             buildManager.SetTowerToUpgrade(null);
-            upgrade.SetActive(false);
         }
     }
 

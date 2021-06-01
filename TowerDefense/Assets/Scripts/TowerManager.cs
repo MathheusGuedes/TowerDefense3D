@@ -9,17 +9,18 @@ public class TowerManager : MonoBehaviour
     [Header("TypeTower")]
     [SerializeField]
     rarity rarityTower;
-    Color32 rarityColor;
+    public Color32 rarityColor;
     public string nameTower;
     public Sprite imgTower;
     public string description;
+    public Color32 bulletColor;
     public float price = 100f;
 
     [Header("Attributes")]
-    public Stats[] stats;
     public int currentLevel = 0;
+    public TowerStats[] stats;
+    [HideInInspector]
     public int nextLevel = 1;
-
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -30,10 +31,13 @@ public class TowerManager : MonoBehaviour
     private float fireCountdown = 0f;
     private Transform target;
 
+    void OnValidate()
+    {
+        ChangeRarity();
+    }
+
     void Start()
     {
-        
-
         InvokeRepeating("UpdateTarget", 0f, 1f);
     }
 
@@ -69,30 +73,26 @@ public class TowerManager : MonoBehaviour
         }
         fireCountdown -= Time.deltaTime;
         TargetLockOn();
-        ChangeRarity();
     }
 
     void Shoot()
     {
         if(target == null)
             return; 
-
         foreach (Transform firePoint in firePoint)
         {
-            GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Bullet bullet = bulletGO.GetComponent<Bullet>();
+            bullet.bulletColor = bulletColor;
             bullet.attack = stats[currentLevel].attack;  
-
             if(bullet != null)
                 bullet.Seek(target);       
         }
     }
-
     void TargetLockOn()
     {
         if(target == null)
             return;
-
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -110,16 +110,16 @@ public class TowerManager : MonoBehaviour
         switch (rarityTower)
         {
             case rarity.normal:
-                rarityColor = Color.black;
+                rarityColor = new Color32(0,0,0,255);
             break;
             case rarity.rare:
-                rarityColor = Color.green;
+                rarityColor = new Color32(70,255,45,255);
             break;
             case rarity.special:
-                rarityColor = Color.yellow;
+                rarityColor = new Color32(255,190,0,255);
             break;
             case rarity.ultra:
-                rarityColor = Color.red;
+                rarityColor = new Color32(150,0,220,255);
             break;
         }
     }
@@ -131,20 +131,5 @@ public class TowerManager : MonoBehaviour
         if(nextLevel < stats.Length-1)
             nextLevel ++;
     }
-
-}
-
-
-[System.Serializable]
-public class Stats
-{
-    public int level = 1;
-    public float attack = 1f;
-    public float fireRate = 1f;  
-    public float range = 15f;
-
-    [Header("Prices")]
-    public float priceUpgrade = 150f;
-    public float priceSell = 80;
 
 }

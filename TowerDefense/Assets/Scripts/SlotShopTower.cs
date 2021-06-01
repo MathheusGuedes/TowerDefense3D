@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class SlotShopTower : MonoBehaviour
 {
-    
     BuildManager buildManager;    
     public GameObject tower;
     public TowerManager statsTower;
     public Image imgTower;
+    public Image imgRarity;
     public Text txtName;
     public Text txtAttack;
     public Text txtRange;
@@ -28,13 +28,13 @@ public class SlotShopTower : MonoBehaviour
         txtValue.text = statsTower.price.ToString() + "$";
         txtDescription.text = statsTower.description.ToString();
         imgTower.sprite = statsTower.imgTower;
+        imgRarity.color = statsTower.rarityColor;
         btnBuy.onClick.AddListener(() => BuyTheTower(tower));
     }
 
     public void BuyTheTower(GameObject tower)
     {
-        buildManager.SetSelectTowerToBuild(this.gameObject);
-        buildManager.SetTowerToBuild(tower);
+        buildManager.SetTowerToBuild(this.gameObject);
     }
 
 }
