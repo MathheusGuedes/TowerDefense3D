@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {   
@@ -14,7 +15,7 @@ public class TowerManager : MonoBehaviour
     public Sprite imgTower;
     public string description;
     public Color32 bulletColor;
-    public float price = 100f;
+    public int price = 100;
 
     [Header("Attributes")]
     public int currentLevel = 0;
@@ -30,6 +31,8 @@ public class TowerManager : MonoBehaviour
     public List<Transform> firePoint;
     private float fireCountdown = 0f;
     private Transform target;
+    public Image imgRange;
+    public GameObject constructionEffect;
 
     void OnValidate()
     {
@@ -38,7 +41,7 @@ public class TowerManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 1f);
+        InvokeRepeating("UpdateTarget", 0f, 0.2f);
     }
 
     void UpdateTarget()
@@ -66,6 +69,7 @@ public class TowerManager : MonoBehaviour
 
     void Update()
     {
+        imgRange.rectTransform.sizeDelta = new Vector2(stats[currentLevel].range*4, stats[currentLevel].range*4);
         if(fireCountdown <= 0f)
         {
             Shoot();
@@ -73,6 +77,8 @@ public class TowerManager : MonoBehaviour
         }
         fireCountdown -= Time.deltaTime;
         TargetLockOn();
+
+        imgRange.transform.eulerAngles += new Vector3(0, 0, imgRange.transform.rotation.z+1 * 90 * Time.deltaTime);
     }
 
     void Shoot()
@@ -99,12 +105,6 @@ public class TowerManager : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats[currentLevel].range);
-    }
-
     void ChangeRarity()
     {
         switch (rarityTower)
@@ -124,12 +124,13 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    public void LevelUp()
+    public void ActiveRange()
     {
-        if(currentLevel < stats.Length)
-            currentLevel ++;
-        if(nextLevel < stats.Length-1)
-            nextLevel ++;
+        imgRange.enabled = true;
     }
 
+    public void DesactiveRange()
+    {
+         imgRange.enabled = false;
+    }
 }

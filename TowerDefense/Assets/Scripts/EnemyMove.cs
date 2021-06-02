@@ -5,6 +5,9 @@ public class EnemyMove : MonoBehaviour
     public float life = 2;
     public float speedBase = 10f;
     public float speed = 10f;
+    
+    public int maxGold;
+    public int minGold;
 
     private Transform target;
     private int wavepointIndex = 0;
@@ -13,19 +16,18 @@ public class EnemyMove : MonoBehaviour
 
     public GameObject effectDeath;
 
+    BuildManager buildManager;
+
     void Start()
-    {
+    {   
+        buildManager = BuildManager.instance;
         target = Waypoints.points[0];
     }
 
     void Update()
     {
-        if(life <= 0)
-        {
-            GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
-            Destroy(effectIns, 2f);
-            Destroy(gameObject);
-        }
+        OnDie();
+        
         if(DayandNight.itsNigth)
         {
             speed = speedBase * 2f;
@@ -49,11 +51,29 @@ public class EnemyMove : MonoBehaviour
     {
         if(wavepointIndex  >= Waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            LastWaypoint();
         }
         else{
             wavepointIndex ++;
             target = Waypoints.points[wavepointIndex];
+        }
+    }
+
+    void LastWaypoint()
+    {   
+        buildManager.GetPlayerStats().RemoveLife(life);
+        Destroy(gameObject);
+    }
+
+    void OnDie()
+    {
+        if(life <= 0)
+        {   
+            int dropGold = Random.Range(minGold, maxGold);
+            buildManager.GetPlayerStats().AddGold(dropGold);
+            GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
+            Destroy(effectIns, 2f);
+            Destroy(gameObject);
         }
     }
 

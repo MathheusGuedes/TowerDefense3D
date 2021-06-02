@@ -12,6 +12,7 @@ public class Node : MonoBehaviour
     public Vector3 positionOffSet;
 
     public GameObject tower;
+    public GameObject previewTower;
 
     BuildManager buildManager;
 
@@ -21,28 +22,21 @@ public class Node : MonoBehaviour
         startColor = GetComponent<Renderer>().material.color;
         buildManager = BuildManager.instance;
     }
+    
 
     void OnMouseDown()
-    {
+    {   
         if(EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if(tower == null)
+        buildManager.SetNodeToBuild(this);
+
+        if(tower != null)
         {
-            if(buildManager.CanBuild)
-            {
-                GameObject towerToBuild = BuildManager.instance.GetTowerToBuild();
-                tower = Instantiate(towerToBuild, transform.position + positionOffSet, transform.rotation);
-                buildManager.SetTowerToBuild(null);
-            }
-            buildManager.SetTowerToUpgrade(null);
-        }
-        else
-        {   
-            buildManager.SetTowerToUpgrade(tower);
+            
+            SelectNode();                      
         }
     }
-
 
     void OnMouseEnter()
     {  
@@ -50,18 +44,42 @@ public class Node : MonoBehaviour
             return;
 
         if(tower != null)
-            rend.material.color = houverColor;
+            SelectNode();
 
         if(buildManager.GetTowerToBuild() == null)
             return;
 
-        rend.material.color = houverColor;
-        
+        SelectNode();
+        buildManager.AddPreviewTower(this);
     }
 
     void OnMouseExit()
     {
-        
+        if(EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if(buildManager.GetTowerToUpgrade() != null)
+            return;
+
+        DiselectNode();
+        buildManager.RemovePreviewTower(this);
+    }
+
+    public void SelectNode()
+    {   
+        if(tower != null)
+        {
+            tower.GetComponent<TowerManager>().ActiveRange();
+        }
+        rend.material.color = houverColor;
+    }
+    
+    public void DiselectNode()
+    {   
+        if(tower != null)
+        {
+            tower.GetComponent<TowerManager>().DesactiveRange();
+        }
         rend.material.color = startColor;
     }
     
