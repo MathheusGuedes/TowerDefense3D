@@ -21,7 +21,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {   
         buildManager = BuildManager.instance;
-        target = GameObject.FindGameObjectWithTag("WayPoints").GetComponent<Waypoints>().points[0];
+        target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[0];
     }
 
     void Update()
@@ -49,13 +49,13 @@ public class EnemyMove : MonoBehaviour
 
     void GetNextWaypoint()
     {
-        if(wavepointIndex  >= Waypoints.points.Length - 1)
+        if(wavepointIndex  >= GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points.Length - 1)
         {
             LastWaypoint();
         }
         else{
             wavepointIndex ++;
-            target = Waypoints.points[wavepointIndex];
+            target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[wavepointIndex];
         }
     }
 

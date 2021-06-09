@@ -10,20 +10,20 @@ public class MapGenerator : MonoBehaviour
     public GameObject followPoint;
     public GameObject spawnPoint;
     public GameObject node;
-    public GameObject objDesactiveNode;
+    public GameObject destructNode;
 
-    int nodeMinY = 1;
-    int nodeMaxY = 13;
+    int nodeMinY = 2;
+    int nodeMaxY = 12;
 
-    int nodeMinX = 1;
-    int nodeMaxX = 10;
+    int nodeMinX = 2;
+    int nodeMaxX = 9;
 
     void Start()
     {   
         Vector3 nodPos = node.transform.position;
 
         int starterRandPosX = Random.Range(nodeMinX,nodeMaxX);
-        int starterRandPosY = Random.Range(nodeMinX,nodeMaxX);
+        int starterRandPosY = Random.Range(nodeMinY,nodeMaxY);
 
         Vector3 randPos = new Vector3(starterRandPosX * 20, 1, starterRandPosY * 20);
 
@@ -37,7 +37,6 @@ public class MapGenerator : MonoBehaviour
         {   
             Vector3 auxVec = insSpawn.transform.position;
             int checkSideX = nodeMaxX - starterRandPosX;
-
             int newPosX = starterRandPosX;
             int auxRandx = 0;
             Vector3 randPosX = new Vector3(0,0,0);
@@ -45,10 +44,8 @@ public class MapGenerator : MonoBehaviour
             //Y
 
             int checkSideY = nodeMaxY - starterRandPosY;
-
             int newPosY = starterRandPosY;
             int auxRandY = 0;
-
             Vector3 randPosY = new Vector3(0,0,0);
 
             for (int i = 0; i < followPointAmount; i++)
@@ -87,6 +84,7 @@ public class MapGenerator : MonoBehaviour
             }
             Instantiate(castlePlayer, auxVec, Quaternion.identity);
             GetComponent<WaveSpawner>().spawnPoint = insSpawn.transform;
+            Instantiate(destructNode, insSpawn.transform.position, insSpawn.transform.rotation);
         }
     }
     
