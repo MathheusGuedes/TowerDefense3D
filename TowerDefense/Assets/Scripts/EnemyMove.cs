@@ -5,9 +5,6 @@ public class EnemyMove : MonoBehaviour
     public float life = 2;
     public float speedBase = 10f;
     public float speed = 10f;
-    
-    public int maxGold;
-    public int minGold;
 
     public Transform target;
     private int wavepointIndex = 0;
@@ -16,18 +13,25 @@ public class EnemyMove : MonoBehaviour
 
     public GameObject effectDeath;
 
-    BuildManager buildManager;
-
     void Start()
+<<<<<<< HEAD
     {   
         buildManager = BuildManager.instance;
         target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[0];
+=======
+    {
+        target = Waypoints.points[0];
+>>>>>>> parent of 9985b87 (GoldSystem / LifeSystem / NewParticles / NewSpriteToRangeTower)
     }
 
     void Update()
     {
-        OnDie();
-        
+        if(life <= 0)
+        {
+            GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
+            Destroy(effectIns, 2f);
+            Destroy(gameObject);
+        }
         if(DayandNight.itsNigth)
         {
             speed = speedBase * 2f;
@@ -51,29 +55,11 @@ public class EnemyMove : MonoBehaviour
     {
         if(wavepointIndex  >= GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points.Length - 1)
         {
-            LastWaypoint();
+            Destroy(gameObject);
         }
         else{
             wavepointIndex ++;
             target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[wavepointIndex];
-        }
-    }
-
-    void LastWaypoint()
-    {   
-        buildManager.GetPlayerStats().RemoveLife(life);
-        Destroy(gameObject);
-    }
-
-    void OnDie()
-    {
-        if(life <= 0)
-        {   
-            int dropGold = Random.Range(minGold, maxGold);
-            buildManager.GetPlayerStats().AddGold(dropGold);
-            GameObject effectIns = Instantiate(effectDeath, transform.position, transform.rotation);
-            Destroy(effectIns, 2f);
-            Destroy(gameObject);
         }
     }
 

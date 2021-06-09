@@ -8,7 +8,6 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         buildManager = BuildManager.instance;
-        upgrade.transform.position = new Vector2(-upgrade.GetComponent<RectTransform>().rect.width/2, upgrade.transform.position.y);
     }
 
     
@@ -16,10 +15,10 @@ public class UpgradeManager : MonoBehaviour
     {
         if(buildManager.GetTowerToUpgrade() == null)
         {
-            upgrade.transform.position = Vector2.Lerp(upgrade.transform.position, new Vector2(-upgrade.GetComponent<RectTransform>().rect.width/2, upgrade.transform.position.y), Time.fixedDeltaTime*2);
+            upgrade.transform.position = Vector2.Lerp(upgrade.transform.position, new Vector2(-265, upgrade.transform.position.y), Time.fixedDeltaTime);
         }
         else{
-            upgrade.transform.position = Vector2.Lerp(upgrade.transform.position, new Vector2(upgrade.GetComponent<RectTransform>().rect.width/2, upgrade.transform.position.y), Time.fixedDeltaTime*2);
+            upgrade.transform.position = Vector2.Lerp(upgrade.transform.position, new Vector2(265, upgrade.transform.position.y), Time.fixedDeltaTime);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape))

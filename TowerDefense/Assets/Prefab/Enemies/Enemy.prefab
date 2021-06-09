@@ -97,10 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 2
-  speedBase: 10
   speed: 20
-  maxGold: 10
-  minGold: 5
   distance: 0
   effectDeath: {fileID: 3994897563950047251, guid: 25007b49245915343a6681f8297e37c7, type: 3}
 --- !u!65 &3478323274780912080

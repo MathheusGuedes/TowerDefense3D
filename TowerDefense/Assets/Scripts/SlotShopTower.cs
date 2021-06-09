@@ -34,7 +34,7 @@ public class SlotShopTower : MonoBehaviour
 
     public void BuyTheTower(GameObject tower)
     {
-        buildManager.SelectTowerToBuild(this.gameObject);
+        buildManager.SetTowerToBuild(this.gameObject);
     }
 
 }

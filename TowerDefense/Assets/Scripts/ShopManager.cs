@@ -3,41 +3,33 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     public GameObject shop;
-    public bool shopClose = true;
+    public bool shopIsOpen = true;
     BuildManager buildManager;
 
     void Start()
     {
         buildManager = BuildManager.instance;
-        shop.transform.position = new Vector2(shop.transform.position.x, -shop.GetComponent<RectTransform>().rect.height/2);
     }
     
     void Update()
-    {  
-        if(shopClose)
+    {
+        if(shopIsOpen)
         {
-            shop.transform.position = Vector2.Lerp(shop.transform.position, new Vector2(shop.transform.position.x, -shop.GetComponent<RectTransform>().rect.height/2), Time.fixedDeltaTime*2);
+            shop.transform.position = Vector2.Lerp(shop.transform.position, new Vector2(shop.transform.position.x, -200), Time.fixedDeltaTime);
         }
         else{
-            shop.transform.position = Vector2.Lerp(shop.transform.position, new Vector2(shop.transform.position.x, shop.GetComponent<RectTransform>().rect.height/2), Time.fixedDeltaTime*2);
-        }
-
-        if(buildManager.GetTowerToUpgrade() != null)
-        {
-            shop.transform.position = Vector2.Lerp(shop.transform.position, new Vector2(shop.transform.position.x, -shop.GetComponent<RectTransform>().rect.height/2), Time.fixedDeltaTime*2);
-            shopClose = true;
+            shop.transform.position = Vector2.Lerp(shop.transform.position, new Vector2(shop.transform.position.x, 130), Time.fixedDeltaTime);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            buildManager.SelectTowerToBuild(null);
+            buildManager.SetTowerToBuild(null);
         }
     }
 
     public void OpenShop()
-    {   
-        buildManager.SetTowerToUpgrade(null);
-        shopClose = !shopClose;
+    {
+        shopIsOpen = !shopIsOpen;
     }
     
 }

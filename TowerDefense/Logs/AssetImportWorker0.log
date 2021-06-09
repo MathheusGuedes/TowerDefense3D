@@ -15,11 +15,19 @@ C:/Users/Matheus/Documents/GitHub/TowerDefense3D/TowerDefense
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
+<<<<<<< HEAD
 50767
 Successfully changed project path to: C:/Users/Matheus/Documents/GitHub/TowerDefense3D/TowerDefense
 C:/Users/Matheus/Documents/GitHub/TowerDefense3D/TowerDefense
 Using Asset Import Pipeline V2.
 Refreshing native plugins compatible for Editor in 90.77 ms, found 1 plugins.
+=======
+60270
+Successfully changed project path to: C:/Users/Professor/Documents/GitHub/TowerDefense3D/TowerDefense
+C:/Users/Professor/Documents/GitHub/TowerDefense3D/TowerDefense
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 110.73 ms, found 1 plugins.
+>>>>>>> parent of 9985b87 (GoldSystem / LifeSystem / NewParticles / NewSpriteToRangeTower)
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.5f1 (3737af19df53)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Resources/UnitySubsystems
@@ -35,6 +43,7 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.5f1/Editor/Data/MonoBleedingEdge/etc'
+<<<<<<< HEAD
 Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56660
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -2101,3 +2110,7 @@ Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 3493.
 Total: 2.306200 ms (FindLiveObjects: 0.225600 ms CreateObjectMapping: 0.114800 ms MarkObjects: 1.902100 ms  DeleteObjects: 0.062700 ms)
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+=======
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56604
+Begin MonoManager ReloadAssembly
+>>>>>>> parent of 9985b87 (GoldSystem / LifeSystem / NewParticles / NewSpriteToRangeTower)

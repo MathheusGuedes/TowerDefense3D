@@ -17,15 +17,11 @@ public class BuildManager : MonoBehaviour
     private GameObject towerToBuild;
     private GameObject towerToUpgrade;
     private GameObject slotShop;
-    private PlayerStats player;
-    private Node node;
+    private GameObject player;
 
-    public void SetPlayerStats(PlayerStats stats)
-    {
-        player = stats;
-    }
+    public bool CanBuild { get {return towerToBuild != null;}}
 
-    public void SelectTowerToBuild(GameObject _slotShop)
+    public void SetTowerToBuild(GameObject _slotShop)
     {
         ChangeColorTowerSelect(_slotShop);
         slotShop = _slotShop;
@@ -36,93 +32,18 @@ public class BuildManager : MonoBehaviour
         return towerToBuild;
     }
 
-    public void SetNodeToBuild(Node _node)
-    {   
-        if(node != null)
-            node.DiselectNode();
-
-        node = _node;
-
-        if(_node.tower != null)
-        {
-            SetTowerToUpgrade(_node.tower);
-        }
-        else
-        {   
-            towerToUpgrade = null;
-            ToBuild();
-        }
-    }
-
-    public Node GetNodeToBuild()
+    public void SetTowerToUpgrade(GameObject tower)
     {
-        return node;
-    }
-
-    public PlayerStats GetPlayerStats()
-    {
-        return player;
-    }
-    
-    public bool CanBuild()
-    {   
-        if(towerToBuild != null && node.tower == null)
-        {
-            TowerManager statsTower = towerToBuild.GetComponent<TowerManager>();
-            if(player.GetGoldAmout() >= statsTower.price)
-            {
-                player.RemoveGold(statsTower.price);
-                return true;
-            }
-            return false;
-        }
-        else
-            return false;
-    }
-
-    public void AddPreviewTower(Node _node)
-    {
-        if(towerToBuild != null)
-        {
-            if(_node.tower == null)
-            {
-                _node.previewTower = Instantiate(towerToBuild, _node.transform.position + _node.positionOffSet, _node.transform.rotation);
-            }
-        }
-    }
-
-    public void RemovePreviewTower(Node _node)
-    {
-        if(_node.previewTower != null)
-        {
-            Destroy(_node.previewTower);
-            _node.previewTower = null;
-        }
-    }
-
-    public void ToBuild()
-    {   
-        if(CanBuild())
-        {
-            node.tower = Instantiate(towerToBuild, node.transform.position + node.positionOffSet, node.transform.rotation);
-            GameObject efConst = Instantiate(towerToBuild.GetComponent<TowerManager>().constructionEffect, node.transform.position, towerToBuild.GetComponent<TowerManager>().constructionEffect.transform.rotation);
-            towerToBuild = null;
-            slotShop.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-            Destroy(node.previewTower);
-            Destroy(efConst, 2f);
-        }
+        towerToBuild = null;
+        towerToUpgrade = tower;
     }
     
     public GameObject GetTowerToUpgrade()
     {
         return towerToUpgrade;
     }
-    
-    public void SetTowerToUpgrade(GameObject tower)
-    {
-        towerToBuild = null;
-        towerToUpgrade = tower;
-    }
+
+
 
     void ChangeColorTowerSelect(GameObject _slotShop)
     {
@@ -132,6 +53,7 @@ public class BuildManager : MonoBehaviour
         {
             if(slotShop != null)
                 slotShop.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            return;
         }
         else {
             towerToBuild = _slotShop.GetComponent<SlotShopTower>().tower;

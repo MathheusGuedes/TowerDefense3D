@@ -20,6 +20,9 @@ public class DayandNight : MonoBehaviour
     Vector3 rotSun;
     Vector3 rotMoon;
 
+    
+
+    
 
     void Start()
     {

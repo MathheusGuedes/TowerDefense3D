@@ -31,14 +31,13 @@ public class UpgradeUI : MonoBehaviour
     [Header("Button")]
     public Text txtSell;
     public Text txtUpgrade;
-    public GameObject btnSell;
+    public Button btnSell;
     public GameObject btnUpgrade;
 
     void Start()
     {
         buildManager = BuildManager.instance;
-        btnUpgrade.GetComponent<Button>().onClick.AddListener(() => LevelUp());
-        btnSell.GetComponent<Button>().onClick.AddListener(() => Sell());
+        btnUpgrade.GetComponent<Button>().onClick.AddListener(() => towerToUpgrade.LevelUp());
     }
 
 
@@ -78,33 +77,6 @@ public class UpgradeUI : MonoBehaviour
         }
 
         
-    }
-
-    public void LevelUp()
-    {   
-        if(buildManager.GetTowerToUpgrade() != null)
-        {
-            if(buildManager.GetPlayerStats().GetGoldAmout() >= towerToUpgrade.stats[towerToUpgrade.currentLevel].priceUpgrade)
-            {
-                if(towerToUpgrade.currentLevel < towerToUpgrade.stats.Length)
-                    towerToUpgrade.currentLevel ++;
-                if(towerToUpgrade.nextLevel < towerToUpgrade.stats.Length-1)
-                    towerToUpgrade.nextLevel ++;
-                
-                buildManager.GetPlayerStats().RemoveGold(towerToUpgrade.stats[towerToUpgrade.currentLevel].priceUpgrade);
-            }
-        }  
-    }
-
-    public void Sell()
-    {
-        if(buildManager.GetTowerToUpgrade() != null)
-        {
-            buildManager.GetPlayerStats().AddGold(towerToUpgrade.stats[towerToUpgrade.currentLevel].priceSell);
-            Destroy(buildManager.GetNodeToBuild().tower);
-            buildManager.GetNodeToBuild().tower = null;
-
-        }
     }
 
 }
