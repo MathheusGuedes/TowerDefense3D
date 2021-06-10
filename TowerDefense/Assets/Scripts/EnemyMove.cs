@@ -9,7 +9,7 @@ public class EnemyMove : MonoBehaviour
     public int maxGold;
     public int minGold;
 
-    public Transform target;
+    private Transform target;
     private int wavepointIndex = 0;
 
     public float distance;
@@ -21,7 +21,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {   
         buildManager = BuildManager.instance;
-        target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[0];
+        target = Waypoints.points[0];
     }
 
     void Update()
@@ -49,13 +49,13 @@ public class EnemyMove : MonoBehaviour
 
     void GetNextWaypoint()
     {
-        if(wavepointIndex  >= GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points.Length - 1)
+        if(wavepointIndex  >= Waypoints.points.Length - 1)
         {
             LastWaypoint();
         }
         else{
             wavepointIndex ++;
-            target = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>().points[wavepointIndex];
+            target = Waypoints.points[wavepointIndex];
         }
     }
 

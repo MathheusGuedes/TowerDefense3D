@@ -8,8 +8,6 @@ TagManager:
   - Bullet
   - Path
   - Castle
-  - Waypoints
-  - Node
   layers:
   - Default
   - TransparentFX
