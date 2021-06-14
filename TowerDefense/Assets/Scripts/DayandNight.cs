@@ -7,7 +7,7 @@ public class DayandNight : MonoBehaviour
     [Header("Minutes/Hours/Days")]
     public float timeSpeed;
     private float minute;
-    private float hour;
+    private float hour = 6f;
     private float day;
     private float hourAndMinute;
     public static bool itsNigth;

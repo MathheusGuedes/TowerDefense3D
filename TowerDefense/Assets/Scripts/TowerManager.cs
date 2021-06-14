@@ -33,6 +33,7 @@ public class TowerManager : MonoBehaviour
     private Transform target;
     public Image imgRange;
     public GameObject constructionEffect;
+    public GameObject lightEffect;
 
     void OnValidate()
     {
@@ -127,10 +128,12 @@ public class TowerManager : MonoBehaviour
     public void ActiveRange()
     {
         imgRange.enabled = true;
+        lightEffect.SetActive(true);
     }
 
     public void DesactiveRange()
     {
          imgRange.enabled = false;
+         lightEffect.SetActive(false);
     }
 }

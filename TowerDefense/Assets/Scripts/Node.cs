@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,13 +14,15 @@ public class Node : MonoBehaviour
 
     BuildManager buildManager;
 
+    //Controll select
+    static bool itsSelect = false;
+
     void Start()
     {
         rend = GetComponent<Renderer>();
         startColor = GetComponent<Renderer>().material.color;
         buildManager = BuildManager.instance;
     }
-    
 
     void OnMouseDown()
     {   
@@ -33,7 +33,6 @@ public class Node : MonoBehaviour
 
         if(tower != null)
         {
-            
             SelectNode();                      
         }
     }
@@ -43,13 +42,12 @@ public class Node : MonoBehaviour
         if(EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if(tower != null)
+        if(!itsSelect && tower != null)
             SelectNode();
 
         if(buildManager.GetTowerToBuild() == null)
             return;
 
-        SelectNode();
         buildManager.AddPreviewTower(this);
     }
 
@@ -67,6 +65,7 @@ public class Node : MonoBehaviour
 
     public void SelectNode()
     {   
+        itsSelect = true;
         if(tower != null)
         {
             tower.GetComponent<TowerManager>().ActiveRange();
@@ -76,6 +75,7 @@ public class Node : MonoBehaviour
     
     public void DiselectNode()
     {   
+        itsSelect = false;
         if(tower != null)
         {
             tower.GetComponent<TowerManager>().DesactiveRange();
