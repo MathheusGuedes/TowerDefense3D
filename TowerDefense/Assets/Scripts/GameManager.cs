@@ -1,19 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public float timeSpeed = 1;
+    public static float timeSpeed = 1f;
     public Text txtTimeSpeed;
-    
-    void Start()
-    {
-        
-    }
 
-    
     void Update()
     {
         Time.timeScale = timeSpeed;

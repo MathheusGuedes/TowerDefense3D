@@ -36,38 +36,38 @@ public class CameraController : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - panBorderThickness)
             {
-                transform.Translate(Vector3.forward * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.forward * panSpeed *Time.deltaTime, Space.Self);
             }
             if(Input.GetKey(KeyCode.S) || Input.mousePosition.y <= panBorderThickness)
             {
-                transform.Translate(Vector3.back * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.back * panSpeed *Time.deltaTime, Space.Self);
             }
             if(Input.GetKey(KeyCode.A) || Input.mousePosition.x <= panBorderThickness)
             {
-                transform.Translate(Vector3.left * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.left * panSpeed *Time.deltaTime, Space.Self);
             }
             if(Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - panBorderThickness)
             {
-                transform.Translate(Vector3.right * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.right * panSpeed *Time.deltaTime, Space.Self);
             }
         }
         else
         {
             if(Input.GetKey(KeyCode.W))
             {
-                transform.Translate(Vector3.forward * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.forward * panSpeed *Time.deltaTime/GameManager.timeSpeed, Space.Self);
             }
             if(Input.GetKey(KeyCode.S))
             {
-                transform.Translate(Vector3.back * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.back * panSpeed *Time.deltaTime/GameManager.timeSpeed, Space.Self);
             }
             if(Input.GetKey(KeyCode.A))
             {
-                transform.Translate(Vector3.left * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.left * panSpeed *Time.deltaTime/GameManager.timeSpeed, Space.Self);
             }
             if(Input.GetKey(KeyCode.D))
             {
-                transform.Translate(Vector3.right * panSpeed *Time.fixedDeltaTime, Space.Self);
+                transform.Translate(Vector3.right * panSpeed *Time.deltaTime/GameManager.timeSpeed, Space.Self);
             }
         }
 

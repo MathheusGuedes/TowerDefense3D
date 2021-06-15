@@ -105,6 +105,7 @@ public class BuildManager : MonoBehaviour
         if(CanBuild())
         {
             node.tower = Instantiate(towerToBuild, node.transform.position + node.positionOffSet, node.transform.rotation);
+            node.tower.GetComponent<TowerManager>().ActiveShoot();
             GameObject efConst = Instantiate(towerToBuild.GetComponent<TowerManager>().constructionEffect, node.transform.position, towerToBuild.GetComponent<TowerManager>().constructionEffect.transform.rotation);
             towerToBuild = null;
             slotShop.GetComponent<Image>().color = new Color32(255, 255, 255, 255);

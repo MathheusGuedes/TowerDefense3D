@@ -35,6 +35,8 @@ public class TowerManager : MonoBehaviour
     public GameObject constructionEffect;
     public GameObject lightEffect;
 
+    bool shoot = false;
+
     void OnValidate()
     {
         ChangeRarity();
@@ -84,18 +86,23 @@ public class TowerManager : MonoBehaviour
 
     void Shoot()
     {
-        if(target == null)
-            return; 
-        foreach (Transform firePoint in firePoint)
+        if(shoot)
         {
-            GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            Bullet bullet = bulletGO.GetComponent<Bullet>();
-            bullet.bulletColor = bulletColor;
-            bullet.attack = stats[currentLevel].attack;  
-            if(bullet != null)
-                bullet.Seek(target);       
+            if(target == null)
+            return; 
+            foreach (Transform firePoint in firePoint)
+            {
+                GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Bullet bullet = bulletGO.GetComponent<Bullet>();
+                bullet.bulletColor = bulletColor;
+                bullet.attack = stats[currentLevel].attack;  
+                if(bullet != null)
+                    bullet.Seek(target);       
+            }
         }
+        
     }
+    
     void TargetLockOn()
     {
         if(target == null)
@@ -135,5 +142,15 @@ public class TowerManager : MonoBehaviour
     {
          imgRange.enabled = false;
          lightEffect.SetActive(false);
+    }
+
+    public void ActiveShoot()
+    {
+        shoot = true;
+    }
+
+    public void DesactiveShoot()
+    {
+        shoot = false;
     }
 }
