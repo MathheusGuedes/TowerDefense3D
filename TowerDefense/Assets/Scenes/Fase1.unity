@@ -7307,7 +7307,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2286318289359907694, guid: 4f270aa608c26ba4b9f573078cef1071, type: 3}
       propertyPath: m_Name
-      value: CastlePlayer
+      value: PlayerCastle
       objectReference: {fileID: 0}
     - target: {fileID: 2286318289359907695, guid: 4f270aa608c26ba4b9f573078cef1071, type: 3}
       propertyPath: m_RootOrder
@@ -11056,7 +11056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5954841199420438929, guid: 3bb27cdfb53f1354a906d67a008ae1e2, type: 3}
       propertyPath: m_Name
-      value: CastleEnemy
+      value: EnemyCastle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb27cdfb53f1354a906d67a008ae1e2, type: 3}
